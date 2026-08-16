@@ -21,7 +21,7 @@ section { scroll-margin-top: 48px; }
 .hero { min-height: calc(100vh - 92px); padding: 9vh 4vw 4vh; position: relative; overflow: hidden; }
 .eyebrow, .sectionLabel { text-transform: uppercase; letter-spacing: .16em; font-size: 11px; font-weight: 700; }
 .eyebrow { display: flex; align-items: center; gap: 10px; }
-.eyebrow span { width: 7px; height: 7px; background: var(--rust); border-radius: 50%; }
+.eyebrowDot { width: 7px; height: 7px; background: var(--rust); border-radius: 50%; }
 .hero h1 { margin: 5vh 0; max-width: 1050px; font: 400 clamp(64px, 10.4vw, 156px)/.82 Georgia, "Times New Roman", serif; letter-spacing: -.075em; }
 .hero h1 em, .approach h2 em, .experience h2 em { font-weight: 400; color: var(--rust); }
 .heroFoot { max-width: 1000px; margin-left: 26%; display: flex; justify-content: space-between; align-items: end; gap: 40px; }

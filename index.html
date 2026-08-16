@@ -50,7 +50,7 @@
       </nav>
 
       <section class="hero" id="top">
-        <div class="eyebrow"><span></span>18 years in data systems</div>
+        <div class="eyebrow"><span class="eyebrowDot" aria-hidden="true"></span><span id="experienceYears">18+</span> years in data systems</div>
         <h1>Data systems.<br><em>Dependable.</em></h1>
         <div class="heroFoot">
           <p>Independent expertise in storage engines and data stores—performance, tunability, self-tuning, and indexing aligned with application needs.</p>
@@ -122,6 +122,8 @@
     </main>
     <script>
       document.getElementById("year").textContent = new Date().getFullYear();
+      document.getElementById("experienceYears").textContent =
+        new Date().getFullYear() - 2008;
 
       const sectionNav = document.querySelector(".sectionNav");
       const sectionLinks = [...sectionNav.querySelectorAll("a:not([href=\"#top\"])")];
