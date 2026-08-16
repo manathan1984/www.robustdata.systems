@@ -12,6 +12,12 @@ a { color: inherit; text-decoration: none; }
 .navLinks > a:not(.navCta):hover { opacity: .55; }
 .navCta { padding: 12px 17px; border: 1px solid var(--ink); border-radius: 99px; transition: .2s; }
 .navCta:hover { background: var(--ink); color: var(--paper); }
+.sectionNav { position: fixed; top: 0; left: 0; right: 0; z-index: 20; height: 48px; padding: 0 4vw; display: flex; align-items: center; justify-content: flex-end; gap: 26px; border-bottom: 1px solid var(--line); background: rgba(242, 239, 231, .92); backdrop-filter: blur(12px); font-size: 12px; opacity: 0; visibility: hidden; transform: translateY(-100%); pointer-events: none; transition: opacity .25s, transform .25s, visibility .25s; }
+.sectionNav.isVisible { opacity: 1; visibility: visible; transform: translateY(0); pointer-events: auto; }
+.sectionNav a { transition: color .2s, opacity .2s; }
+.sectionNav a.isActive { color: var(--rust); font-weight: 700; }
+.sectionNav a:hover { opacity: .55; }
+section { scroll-margin-top: 48px; }
 .hero { min-height: calc(100vh - 92px); padding: 9vh 4vw 4vh; position: relative; overflow: hidden; }
 .eyebrow, .sectionLabel { text-transform: uppercase; letter-spacing: .16em; font-size: 11px; font-weight: 700; }
 .eyebrow { display: flex; align-items: center; gap: 10px; }
@@ -63,6 +69,9 @@ footer p { margin: 0; }
 @media (max-width: 760px) {
   .nav { height: 76px; }
   .navLinks > a:not(.navCta) { display: none; }
+  .sectionNav { justify-content: flex-start; gap: 22px; padding: 0 6vw; overflow-x: auto; scrollbar-width: none; }
+  .sectionNav::-webkit-scrollbar { display: none; }
+  .sectionNav a { flex: 0 0 auto; }
   .hero { min-height: calc(100svh - 76px); padding-top: 9vh; }
   .hero h1 { font-size: clamp(62px, 20vw, 105px); margin-top: 7vh; }
   .heroFoot { margin-left: 0; align-items: center; }
@@ -86,4 +95,5 @@ footer p { margin: 0; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .signal i { animation: none; }
+  .sectionNav { transition: none; }
 }

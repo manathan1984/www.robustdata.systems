@@ -14,8 +14,8 @@
     <meta property="og:title" content="Robust Data Systems">
     <meta property="og:description" content="Data systems. Dependable.">
     <meta property="og:image" content="https://www.robustdata.systems/assets/og.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
+    <meta property="og:image:width" content="1731">
+    <meta property="og:image:height" content="909">
     <meta property="og:image:alt" content="Robust Data Systems — Data systems. Dependable.">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Robust Data Systems">
@@ -41,6 +41,14 @@
         </div>
       </nav>
 
+      <nav class="sectionNav" aria-label="Page sections">
+        <a href="#top">Top</a>
+        <a href="#services">Expertise</a>
+        <a href="#approach">Approach</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
       <section class="hero" id="top">
         <div class="eyebrow"><span></span>18 years in data systems</div>
         <h1>Data systems.<br><em>Dependable.</em></h1>
@@ -58,7 +66,7 @@
         <p class="statement">A data store succeeds when its internal tradeoffs match the workload above it, the hardware below it, and the guarantees it must provide throughout the data lifecycle.</p>
       </section>
 
-      <section class="services" id="services">
+      <section class="services" id="services" data-nav-section>
         <div class="sectionHead">
           <p class="sectionLabel">Where we go deep</p>
           <h2>Systems expertise.<br>Applied precisely.</h2>
@@ -72,7 +80,7 @@
         </div>
       </section>
 
-      <section class="approach" id="approach">
+      <section class="approach" id="approach" data-nav-section>
         <div class="approachTitle">
           <p class="sectionLabel light">Our approach</p>
           <h2>Rigorous thinking.<br><em>Practical delivery.</em></h2>
@@ -85,7 +93,7 @@
         </div>
       </section>
 
-      <section class="experience" id="experience">
+      <section class="experience" id="experience" data-nav-section>
         <div class="experienceIntro">
           <p class="sectionLabel">Research-backed practice</p>
           <h2>Research behind<br><em>the practice.</em></h2>
@@ -97,7 +105,7 @@
         </div>
       </section>
 
-      <section class="contact" id="contact">
+      <section class="contact" id="contact" data-nav-section>
         <p class="sectionLabel">Start a conversation</p>
         <h2>Have a hard data problem?</h2>
         <a href="mailto:info@robustdata.systems">Tell us about it <span aria-hidden="true">↗</span></a>
@@ -112,6 +120,39 @@
         <p>© <span id="year">2026</span> Robust Data Systems LLC</p>
       </footer>
     </main>
-    <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      const sectionNav = document.querySelector(".sectionNav");
+      const sectionLinks = [...sectionNav.querySelectorAll("a:not([href=\"#top\"])")];
+      const pageSections = [...document.querySelectorAll("[data-nav-section]")];
+
+      function updateSectionNav() {
+        const marker = window.scrollY + sectionNav.offsetHeight + 32;
+        const showNav = window.scrollY >= pageSections[0].offsetTop - sectionNav.offsetHeight;
+        sectionNav.classList.toggle("isVisible", showNav);
+
+        let activeSection = null;
+        for (const section of pageSections) {
+          if (section.offsetTop <= marker) activeSection = section.id;
+        }
+
+        const nearPageEnd =
+          window.innerHeight + window.scrollY >=
+          document.documentElement.scrollHeight - 80;
+        if (nearPageEnd) activeSection = "contact";
+
+        for (const link of sectionLinks) {
+          const isActive = showNav && link.hash === "#" + activeSection;
+          link.classList.toggle("isActive", isActive);
+          if (isActive) link.setAttribute("aria-current", "location");
+          else link.removeAttribute("aria-current");
+        }
+      }
+
+      updateSectionNav();
+      addEventListener("scroll", updateSectionNav, { passive: true });
+      addEventListener("resize", updateSectionNav);
+    </script>
   </body>
 </html>
